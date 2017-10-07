@@ -33,16 +33,26 @@ Node* createNode(char* str){
   createdNode->right = 0;
   createdNode->left = 0;
 
+  printf("\nNode Created. Value: %s" , createdNode->strValue); 
   return createdNode;
 }
  
 
 Node* insertNode(Node* root, char* str){
-  if(!root)
-    root = createNode(str);
-  else
-    (root->strValue < str)?
-      insertNode(root->right, str):insertNode(root->left, str); 
+  if(root == 0){
+    printf("\nNo child nodes. Attempting to create Node");
+    root = createNode(str);    
+  }
+  else if(strcmp(str, root->strValue) > 0){
+    printf("\nCreating right child for %s" , root->strValue);
+    root->right = insertNode(root->right , str);
+  }
+  else{
+    printf("\nCreating left child for %s" ,root->strValue);
+    root->left = insertNode(root->left, str);
+  }
+ 
+  printf("\n" ); 
   return root;
 }
 
@@ -50,13 +60,14 @@ void main(){
   // char str[100];
   Node* root = 0;
 
-  //  printf(root->strValue);
   root = insertNode(root , "ad");
-  printf(root->strValue);
   root = insertNode(root,"sdfdsf");
-  printf(root->strValue);
   root = insertNode(root, "sdfdsfdsfdsffdf");
-  printf(root->strValue);
-
-  printf(root->left->strValue);
+  root = insertNode(root , "a");
+  
+  printf("\nRoot: %s" , root->strValue);
+  printf("\nRoot's left child: %s" , root->left->strValue);
+  printf("\nRoot's right child: %s" , root->right->strValue);
+  printf("\nRoot's right child->right child: %s" , root->right->right->strValue);
+  
 }
