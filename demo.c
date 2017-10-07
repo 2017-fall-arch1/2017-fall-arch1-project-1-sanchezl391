@@ -4,6 +4,9 @@
 #include "header.h"
 
 main(){
-  char buf[100];
-  
+  char str[100];
+  Node* root = 0;
+  //insertNode(root , "ad");
+  //insertNode(root, "sdfdsf");
+  //insertNode(root, "sdfdsfdsfdsffdf")
 }
