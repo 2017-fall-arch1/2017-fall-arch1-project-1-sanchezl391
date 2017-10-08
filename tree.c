@@ -15,8 +15,10 @@ void printTree(Node* root){
     printTree(root->right);
  }
 
-void traverseTree(){
-
+Node* findMin(Node* root){
+  if(root->left)
+    return findMin(root->left);
+  return root;
 }
 
 Node* createNode(char* str){
@@ -42,14 +44,56 @@ Node* insertNode(Node* root, char* str){
   return root;
 }
 
+Node* deleteNode(Node* root, char* str){
+  if(!root)
+    return root;
+  
+  if(strcmp(str, root->strValue) < 0)
+    root->left = deleteNode(root->left, str);
+  else if(strcmp(str, root->strValue) > 0)
+    root->right = deleteNode(root->right, str);
+  else{
+    if(!root->left && !root->right){
+      free(root);
+      root = 0;
+    }
+    else if(!root->left){
+      Node* temp = root;
+      root = root->right;
+      free(temp);
+    }
+    else if(!root->right){
+      Node* temp = root;
+      root = root->right;
+      free(temp);
+    }
+    else{
+      Node* temp = findMin(root->right);
+      root->strValue = temp->strValue;
+      root->right = deleteNode(root->right , str);
+    }
+    
+    return root;
+  }        
+}
+
 void main(){
   // char str[100];
   Node* root = 0;
 
   root = insertNode(root , "amy sand");
-  root = insertNode(root,"luis sanchez ");
+  root = insertNode(root,"luis sanchez");
   root = insertNode(root, "susana gutierrez");
   root = insertNode(root , "pewie");
   
-  printTree(root);
+  printTree(root);printf("\n");
+  root=deleteNode(root,"pewie");
+
+  printTree(root);printf("\n");
+  root=deleteNode(root , "luis sanchez");
+
+  printTree(root);printf("\n");
+  root=insertNode(root , "luis sanchez");
+  
+  printTree(root);printf("\n");
 }
