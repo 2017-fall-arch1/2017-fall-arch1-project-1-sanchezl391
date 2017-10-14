@@ -4,6 +4,18 @@
 #include <assert.h>
 #include <string.h>
 
+void readFile(FILE* ptr, char* fileName){
+  char tempStr[30];
+  ptr = fopen(fileName, "r");
+  if(ptr){
+    while(fgets(tempStr, 30 , ptr)){
+      puts(tempStr);
+    }
+  }
+  else
+    ptr = fopen(fileName , "w");
+  fclose(ptr);
+}
 
 void printTree(Node* root){
   if(!root)
@@ -11,7 +23,7 @@ void printTree(Node* root){
   
   if(root->left)
     printTree(root->left);
-  printf("\n%s" , root->strValue);
+  printf("\n%s" , root->strValue);//This needs to be changed
   if(root->right)
     printTree(root->right);
  }

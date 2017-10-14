@@ -1,5 +1,6 @@
 #ifndef header_h
 #define header_h
+#include <stdio.h>
 
 /* Node struct*/
 typedef struct Node{
@@ -15,5 +16,6 @@ char *string;
 Node* insertNode(Node* root, char* str);
 Node* deleteNode(Node* root, char* str);
 void printTree(Node* root);
+void readFile(FILE* ptr, char* fileName);
 
 #endif
