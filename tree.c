@@ -1,8 +1,9 @@
+#include "header.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
 #include <string.h>
-#include "header.h"
+
 
 void printTree(Node* root){
   if(!root)
@@ -30,7 +31,6 @@ Node* createNode(char* str){
  
   return createdNode;
 }
- 
 
 Node* insertNode(Node* root, char* str){
   if(!root)
@@ -75,25 +75,4 @@ Node* deleteNode(Node* root, char* str){
     
     return root;
   }        
-}
-
-void main(){
-  // char str[100];
-  Node* root = 0;
-
-  root = insertNode(root , "amy sand");
-  root = insertNode(root,"luis sanchez");
-  root = insertNode(root, "susana gutierrez");
-  root = insertNode(root , "pewie");
-  
-  printTree(root);printf("\n");
-  root=deleteNode(root,"pewie");
-
-  printTree(root);printf("\n");
-  root=deleteNode(root , "luis sanchez");
-
-  printTree(root);printf("\n");
-  root=insertNode(root , "luis sanchez");
-  
-  printTree(root);printf("\n");
 }

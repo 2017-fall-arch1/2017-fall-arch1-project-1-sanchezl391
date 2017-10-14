@@ -1,3 +1,6 @@
+#ifndef header_h
+#define header_h
+
 /* Node struct*/
 typedef struct Node{
   struct Node *left;
@@ -5,4 +8,12 @@ typedef struct Node{
   char *strValue;
 }Node;
 
-char *string;  
+char *string;
+
+/*Interface*/
+
+Node* insertNode(Node* root, char* str);
+Node* deleteNode(Node* root, char* str);
+void printTree(Node* root);
+
+#endif
